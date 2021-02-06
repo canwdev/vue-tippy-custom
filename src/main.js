@@ -2,10 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-
-import clickOutside from './directives/click-outside'
-
-Vue.directive('clickOutside', clickOutside)
+import "tippy.js/themes/light.css";
+import VueTippy, {TippyComponent} from '@/components/TippyVue'
+Vue.use(VueTippy)
+Vue.component('tippy', TippyComponent)
 Vue.config.productionTip = false
 
 new Vue({
