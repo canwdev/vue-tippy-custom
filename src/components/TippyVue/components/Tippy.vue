@@ -13,25 +13,44 @@
 <script>
 import tippy from "tippy.js";
 import humps from "humps";
-import defaultProps, { booleanProps } from "../props";
+import defaultProps, {booleanProps} from "../props";
+
 export default {
-  props: [
-    "to",
-    "toSelector",
-    "toElement",
-    "content",
-    "enabled",
-    "visible",
-    "triggerTarget"
-  ],
+  props: {
+    to: undefined,
+    toSelector: undefined,
+    toElement: undefined,
+    content: undefined,
+    enabled: undefined,
+    visible: undefined,
+    triggerTarget: undefined,
+    isCloseOnClickOutside: { // 是否开启 点击外部关闭（修改版）
+      type: Boolean,
+      default: true
+    }
+  },
   data() {
     return {
       tip: null,
-      options: {}
+      options: {
+        // 重写默认设置
+        arrow: true,
+        interactive: true,
+        theme: 'light',
+        placement: 'bottom-start',
+        hideOnClick: 'toggle',
+        appendTo: 'parent',
+        trigger: 'click'
+      },
+      toElm: null
     };
   },
   mounted() {
     this.init();
+
+    if (this.isCloseOnClickOutside) {
+      document.addEventListener('mousedown', this.onClickOutside)
+    }
   },
   watch: {
     content() {
@@ -68,6 +87,10 @@ export default {
     if (!this.tip) return;
 
     this.tip.destroy();
+
+    if (this.isCloseOnClickOutside) {
+      document.removeEventListener('mousedown', this.onClickOutside)
+    }
   },
   computed: {
     isManualTrigger() {
@@ -79,7 +102,8 @@ export default {
       if (this.tip) {
         try {
           this.tip.destroy();
-        } catch (error) { }
+        } catch (error) {
+        }
 
         this.tip = null;
       }
@@ -92,8 +116,8 @@ export default {
         } else if (this.toSelector) {
           elm = document.querySelector(this.toSelector);
         } else if (
-          this.$refs.trigger &&
-          this.$refs.trigger.childElementCount > 0
+            this.$refs.trigger &&
+            this.$refs.trigger.childElementCount > 0
         ) {
           elm = this.$refs.trigger;
         } else {
@@ -104,6 +128,8 @@ export default {
       if (!elm) {
         return;
       }
+
+      this.toElm = elm
 
       let tip = tippy(elm, this.getOptions());
 
@@ -198,6 +224,21 @@ export default {
       this.options.triggerTarget = this.triggerTarget;
 
       return this.options;
+    },
+    onClickOutside(e) {
+      const trigger = this.toElm
+      const content = this.$refs.content
+
+      // console.log({
+      //   target: e.target,
+      //   trigger,
+      //   content
+      // })
+
+      if (trigger !== e.target && !content.contains(e.target)) {
+        console.log('hide')
+        this.tip.hide()
+      }
     }
   }
 };

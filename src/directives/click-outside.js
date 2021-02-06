@@ -5,16 +5,15 @@ const docEl = document.documentElement
 
 export default {
   bind: function (el, binding, vNode) {
-    el.close = (e) => {
-      const fun = vNode.context[binding.expression]
-      if (!vNode.context[binding.expression]) return
-      if (!el.contains(e.target)) {
-        fun(e)
+    el.$onClickOutside = (e) => {
+      const callback = vNode.context[binding.expression]
+      if (callback && !el.contains(e.target)) {
+        callback(e)
       }
     }
-    document.addEventListener('mousedown', el.close)
+    document.addEventListener('mousedown', el.$onClickOutside)
   },
   unbind: function (el, binding, vNode) {
-    window.removeEventListener('mousedown', el.close)
+    document.removeEventListener('mousedown', el.$onClickOutside)
   }
 }

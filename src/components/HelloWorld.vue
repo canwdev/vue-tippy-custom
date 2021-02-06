@@ -23,16 +23,11 @@
     <h2><input type="text" v-model="txt"></h2>
 
     <tippy to="myTrigger"
-           :arrow="true"
            theme='light test-tippy'
-           interactive trigger="click"
-           placement="bottom-start"
-           hideOnClick='toggle'
-           appendTo="parent"
            ref="tipppy"
     >
       <div
-          data-contains="aaa"
+
       >
         <input type="text" v-model="txt">
         <p>
