@@ -1,3 +1,4 @@
+// https://github.com/KABBOUCHI/vue-tippy
 import tippy from 'tippy.js'
 
 import TippyComponent from './components/Tippy.vue'

@@ -1,0 +1,48 @@
+$bgColor: white;
+$borderWidth: 8px;
+
+.tippy-tooltip{
+  filter: drop-shadow(0px 2px 9px rgba(0, 0, 0, 0.15));
+}
+
+.tippy-tooltip.light-theme {
+  color: #333;
+  box-shadow: 0px 2px 9px 0px rgba(0, 0, 0, 0.1);
+  background-color: $bgColor
+}
+
+.tippy-tooltip.light-theme[x-placement^=top] .tippy-arrow {
+  border-top: $borderWidth solid $bgColor;
+  border-right: $borderWidth solid transparent;
+  border-left: $borderWidth solid transparent
+}
+
+.tippy-tooltip.light-theme[x-placement^=bottom] .tippy-arrow {
+  border-bottom: $borderWidth solid $bgColor;
+  border-right: $borderWidth solid transparent;
+  border-left: $borderWidth solid transparent
+}
+
+.tippy-tooltip.light-theme[x-placement^=left] .tippy-arrow {
+  border-left: $borderWidth solid $bgColor;
+  border-top: $borderWidth solid transparent;
+  border-bottom: $borderWidth solid transparent
+}
+
+.tippy-tooltip.light-theme[x-placement^=right] .tippy-arrow {
+  border-right: $borderWidth solid $bgColor;
+  border-top: $borderWidth solid transparent;
+  border-bottom: $borderWidth solid transparent
+}
+
+.tippy-tooltip.light-theme .tippy-backdrop {
+  background-color: $bgColor
+}
+
+.tippy-tooltip.light-theme .tippy-roundarrow {
+  fill: $bgColor
+}
+
+.tippy-tooltip.light-theme[data-animatefill] {
+  background-color: initial
+}
