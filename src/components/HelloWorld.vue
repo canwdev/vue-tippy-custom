@@ -5,7 +5,7 @@
     <button :content="msg" v-tippy="{
       trigger : 'click',
        interactive : true,
-       theme : 'light-border',
+       theme : 'light',
        placement : 'bottom',
        arrow: true,
        hideOnClick: 'toggle'
