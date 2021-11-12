@@ -7,7 +7,7 @@ $borderWidth: 8px;
 
 .tippy-tooltip.light-theme {
   color: #333;
-  box-shadow: 0px 2px 9px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.1);
   background-color: $bgColor
 }
 
@@ -45,4 +45,11 @@ $borderWidth: 8px;
 
 .tippy-tooltip.light-theme[data-animatefill] {
   background-color: initial
+}
+
+.tippy-tooltip.no-transform-y-theme {
+  transform: translateY(0) !important;
+  padding: 0;
+  filter: none;
+  box-shadow: 0px 2px 9px 0px rgba(0, 0, 0, 0.2);
 }

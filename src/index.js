@@ -20,30 +20,30 @@ const plugin = {
       opts = Object.assign({}, options, opts)
 
       if (handlers && handlers['show']) {
-        opts.onShow = function (...args) {
+        opts.onShow = function(...args) {
           return handlers['show'].fns(...args)
         }
       }
 
       if (handlers && handlers['shown']) {
-        opts.onShown = function (...args) {
+        opts.onShown = function(...args) {
           handlers['shown'].fns(...args)
         }
       }
       if (handlers && handlers['hidden']) {
-        opts.onHidden = function (...args) {
+        opts.onHidden = function(...args) {
           handlers['hidden'].fns(...args)
         }
       }
 
       if (handlers && handlers['hide']) {
-        opts.onHide = function (...args) {
+        opts.onHide = function(...args) {
           return handlers['hide'].fns(...args)
         }
       }
 
       if (handlers && handlers['mount']) {
-        opts.onMount = function (...args) {
+        opts.onMount = function(...args) {
           handlers['mount'].fns(...args)
         }
       }
@@ -99,9 +99,13 @@ const plugin = {
   },
 }
 
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(plugin)
-  window.Vue.component('tippy', TippyComponent)
+// if (typeof window !== 'undefined' && window.Vue) {
+//   window.Vue.use(plugin)
+//   window.Vue.component('tippy', TippyComponent)
+// }
+
+TippyComponent.install = function (Vue) {
+  Vue.component(TippyComponent.name, TippyComponent)
 }
 
 export default plugin

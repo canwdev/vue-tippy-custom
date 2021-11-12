@@ -1,19 +1,9 @@
-# vue-demo-ui
+# Modified [VueTippy](https://github.com/KABBOUCHI/vue-tippy)
 
-## Project setup
-```
-yarn install
-```
+# Run Demo
 
-### Compiles and hot-reloads for development
-```
+```sh
+cd demo
+yarn
 yarn serve
 ```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
